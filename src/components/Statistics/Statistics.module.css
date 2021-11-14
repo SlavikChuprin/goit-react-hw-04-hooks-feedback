@@ -1,0 +1,17 @@
+.statisticsList {
+  width: 300px;
+  list-style: none;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.statisticsListItemTotal {
+  font-weight: 800;
+}
+
+.statisticsListItemPositive {
+  font-weight: 800;
+}
