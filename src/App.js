@@ -12,21 +12,17 @@ export default function App() {
 
   const handleIncrement = e => {
     const btnName = e.currentTarget.outerText;
-    console.log(btnName);
     switch (btnName) {
       case 'good':
         setGood(state => state + 1);
-        console.log(good);
         break;
 
       case 'neutral':
         setNeutral(state => state + 1);
-        console.log(neutral);
         break;
 
       case 'bad':
         setBad(state => state + 1);
-        console.log(bad);
         break;
 
       default:
