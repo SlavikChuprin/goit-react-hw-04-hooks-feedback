@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Section from './components/Section';
 import FeedbackOptions from './components/FeedbackOptions';
@@ -12,51 +12,50 @@ export default function App() {
 
   const handleIncrement = e => {
     const btnName = e.currentTarget.outerText;
+    console.log(btnName);
     switch (btnName) {
-      case good:
+      case 'good':
         setGood(state => state + 1);
+        console.log(good);
         break;
 
-      case neutral:
+      case 'neutral':
         setNeutral(state => state + 1);
+        console.log(neutral);
         break;
 
-      case bad:
+      case 'bad':
         setBad(state => state + 1);
+        console.log(bad);
         break;
 
       default:
         console.log('нет такой оценки');
     }
-    this.setState(prevState => ({
-      [btnName]: prevState[btnName] + 1,
-    }));
   };
 
-  totalScore = state =>
-    Object.values(this.state).reduce((total, option) => (total += option), 0);
+  let totalScore = good + neutral + bad;
 
-  positivePercentage = state =>
-    Math.round((this.state.good / this.totalScore()) * 100);
+  let positivePercentage = Math.round((good / totalScore) * 100);
 
-  const nameButton = Object.keys(this.state);
+  const nameFeedbacks = ['good', 'neutral', 'bad'];
   return (
     <div className="App">
       <Section title="Please leave feedback">
         <FeedbackOptions
-          options={nameButton}
-          onLeaveFeedback={this.handleIncrement}
+          options={nameFeedbacks}
+          onLeaveFeedback={handleIncrement}
         />
       </Section>
 
-      {this.totalScore(this.state) === 0 ? (
+      {totalScore === 0 ? (
         <Notification message="No feedback given..." />
       ) : (
         <Section title="Statistics">
           <Statistics
-            options={this.state}
-            onTotal={this.totalScore}
-            onPositivePercentage={this.positivePercentage}
+            options={[good, neutral, bad]}
+            onTotal={totalScore}
+            onPositivePercentage={positivePercentage}
           />
         </Section>
       )}
